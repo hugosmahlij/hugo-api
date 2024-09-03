@@ -3,6 +3,7 @@ package com.hugo.api.entity;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -26,10 +27,10 @@ public class Empleado {
     private String email;
 
     @Column(nullable = false)
-    private Date fechaNacimiento;
+    private LocalDate fechaNacimiento;
 
     @Column(nullable = false)
-    private Date fechaIngreso;
+    private LocalDate fechaIngreso;
 
 
 
@@ -74,19 +75,19 @@ public class Empleado {
         this.email = email;
     }
 
-    public Date getFechaNacimiento() {
+    public LocalDate getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(Date fechaNacimiento) {
+    public void setFechaNacimiento(LocalDate fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 
-    public Date getFechaIngreso() {
+    public LocalDate getFechaIngreso() {
         return fechaIngreso;
     }
 
-    public void setFechaIngreso(Date fechaIngreso) {
+    public void setFechaIngreso(LocalDate fechaIngreso) {
         this.fechaIngreso = fechaIngreso;
     }
 }

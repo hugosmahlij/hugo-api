@@ -26,10 +26,11 @@ public class EmpleadoServiceImpl implements EmpleadoService {
         empleado.setNombre(empleadoDTO.getNombre());
         empleado.setApellido(empleadoDTO.getApellido());
         empleado.setEmail(empleadoDTO.getEmail());
-        empleado.setFechaNacimiento(empleado.getFechaNacimiento());
+        empleado.setFechaNacimiento(empleadoDTO.getFechaNacimiento());
         empleado.setFechaIngreso(empleadoDTO.getFechaIngreso());
 
         Empleado empleadoGuardado = empleadoRepository.save(empleado);
+
         return new EmpleadoDTOResponse(
                 empleadoGuardado.getId(),
                 empleadoGuardado.getNroDocumento(),

@@ -4,7 +4,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 
 public class EmpleadoDTORequest {
@@ -23,10 +23,12 @@ public class EmpleadoDTORequest {
     private String email;
 
     @NotNull
-    private Date fechaNacimiento;
+    private LocalDate fechaNacimiento;
 
     @NotNull
-    private Date fechaIngreso;
+    private LocalDate fechaIngreso;
+
+
 
     public @NotNull Integer getNroDocumento() {
         return nroDocumento;
@@ -60,19 +62,19 @@ public class EmpleadoDTORequest {
         this.email = email;
     }
 
-    public @NotNull Date getFechaNacimiento() {
+    public @NotNull LocalDate getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(@NotNull Date fechaNacimiento) {
+    public void setFechaNacimiento(@NotNull LocalDate fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 
-    public @NotNull Date getFechaIngreso() {
+    public LocalDate getFechaIngreso() {
         return fechaIngreso;
     }
 
-    public void setFechaIngreso(@NotNull Date fechaIngreso) {
+    public void setFechaIngreso(@NotNull LocalDate fechaIngreso) {
         this.fechaIngreso = fechaIngreso;
     }
 }
