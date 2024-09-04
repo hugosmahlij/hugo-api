@@ -4,7 +4,7 @@ package com.hugo.api.entity;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name="empleados")
@@ -31,6 +31,9 @@ public class Empleado {
 
     @Column(nullable = false)
     private LocalDate fechaIngreso;
+
+    @Column(nullable = false, updatable = false)
+    private LocalDate fechaCreacion;
 
 
 
@@ -89,5 +92,18 @@ public class Empleado {
 
     public void setFechaIngreso(LocalDate fechaIngreso) {
         this.fechaIngreso = fechaIngreso;
+    }
+
+    public LocalDate getFechaCreacion() {
+        return fechaCreacion;
+    }
+
+    public void setFechaCreacion(LocalDate fechaCreacion) {
+        this.fechaCreacion = fechaCreacion;
+    }
+
+    @PrePersist
+    protected void enCreacion() {
+        this.fechaCreacion = LocalDate.now();
     }
 }

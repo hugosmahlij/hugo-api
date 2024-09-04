@@ -28,7 +28,6 @@ public class EmpleadoServiceImpl implements EmpleadoService {
         empleado.setEmail(empleadoDTO.getEmail());
         empleado.setFechaNacimiento(empleadoDTO.getFechaNacimiento());
         empleado.setFechaIngreso(empleadoDTO.getFechaIngreso());
-
         Empleado empleadoGuardado = empleadoRepository.save(empleado);
 
         return new EmpleadoDTOResponse(
@@ -38,7 +37,8 @@ public class EmpleadoServiceImpl implements EmpleadoService {
                 empleadoGuardado.getApellido(),
                 empleadoGuardado.getEmail(),
                 empleadoGuardado.getFechaNacimiento(),
-                empleadoGuardado.getFechaIngreso());
+                empleadoGuardado.getFechaIngreso(),
+                empleadoGuardado.getFechaCreacion());
     }
 
     @Override
@@ -51,7 +51,8 @@ public class EmpleadoServiceImpl implements EmpleadoService {
                         empleado.getApellido(),
                         empleado.getEmail(),
                         empleado.getFechaNacimiento(),
-                        empleado.getFechaIngreso()
+                        empleado.getFechaIngreso(),
+                        empleado.getFechaCreacion()
                 ))
                 .collect(Collectors.toList());
     }
@@ -68,7 +69,8 @@ public class EmpleadoServiceImpl implements EmpleadoService {
                 empleado.getApellido(),
                 empleado.getEmail(),
                 empleado.getFechaNacimiento(),
-                empleado.getFechaIngreso()
+                empleado.getFechaIngreso(),
+                empleado.getFechaCreacion()
         );
     }
 

@@ -1,6 +1,7 @@
 package com.hugo.api.dto;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class EmpleadoDTOResponse {
@@ -12,9 +13,10 @@ public class EmpleadoDTOResponse {
     private String email;
     private LocalDate fechaNacimiento;
     private LocalDate fechaIngreso;
+    private LocalDate fechaCreacion;
 
     //Constructor que trae el ID de la base de dato por eso esta en RESPONSE
-    public EmpleadoDTOResponse(Long id, Integer nroDocumento, String nombre, String apellido, String email, LocalDate fechaNacimiento, LocalDate fechaIngreso) {
+    public EmpleadoDTOResponse(Long id, Integer nroDocumento, String nombre, String apellido, String email, LocalDate fechaNacimiento, LocalDate fechaIngreso, LocalDate fechaCreacion) {
         this.id = id;
         this.nroDocumento = nroDocumento;
         this.nombre = nombre;
@@ -22,6 +24,7 @@ public class EmpleadoDTOResponse {
         this.email = email;
         this.fechaNacimiento = fechaNacimiento;
         this.fechaIngreso = fechaIngreso;
+        this.fechaCreacion = fechaCreacion;
     }
 
     public Long getId() {
@@ -78,5 +81,13 @@ public class EmpleadoDTOResponse {
 
     public void setFechaIngreso(LocalDate fechaIngreso) {
         this.fechaIngreso = fechaIngreso;
+    }
+
+    public LocalDate getFechaCreacion() {
+        return fechaCreacion;
+    }
+
+    public void setFechaCreacion(LocalDate fechaCreacion) {
+        this.fechaCreacion = fechaCreacion;
     }
 }
