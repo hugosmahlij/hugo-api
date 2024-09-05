@@ -119,6 +119,43 @@ public class EmpleadoServiceImpl implements EmpleadoService {
     }
 
     @Override
+    public EmpleadoDTOResponse actualizarEmpleado(Long id, EmpleadoDTORequest empleadoDTO) {
+        Empleado empleadoExistente = empleadoRepository.findById(id).orElseThrow(() -> new IdNoEncontradoException("No se encontró el empleado con Id: " + id));
+
+        // Verificaciones de sobreescritura de campos
+        if (empleadoRepository.existsByNroDocumento((empleadoDTO.getNroDocumento())) &&
+        !empleadoExistente.getNroDocumento().equals(empleadoDTO.getNroDocumento())) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Ya existe un empleado con el documento ingresado.");
+        }
+
+        if (empleadoRepository.existsByEmail(empleadoDTO.getEmail()) &&
+        !empleadoExistente.getEmail().equals(empleadoDTO.getEmail())) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Ya existe un empleado con el email ingresado.");
+        }
+
+        // Actualizar campos
+        empleadoExistente.setNroDocumento(empleadoDTO.getNroDocumento());
+        empleadoExistente.setNombre(empleadoDTO.getNombre());
+        empleadoExistente.setApellido(empleadoDTO.getApellido());
+        empleadoExistente.setEmail(empleadoDTO.getEmail());
+        empleadoExistente.setFechaNacimiento(empleadoDTO.getFechaNacimiento());
+        empleadoExistente.setFechaIngreso(empleadoDTO.getFechaIngreso());
+
+        empleadoRepository.save(empleadoExistente);
+
+        return new EmpleadoDTOResponse(
+                empleadoExistente.getId(),
+                empleadoExistente.getNroDocumento(),
+                empleadoExistente.getNombre(),
+                empleadoExistente.getApellido(),
+                empleadoExistente.getEmail(),
+                empleadoExistente.getFechaNacimiento(),
+                empleadoExistente.getFechaIngreso(),
+                empleadoExistente.getFechaCreacion()
+        );
+    }
+
+    @Override
     public void eliminarEmpleado(Long id) {
         empleadoRepository.deleteById(id);
     }

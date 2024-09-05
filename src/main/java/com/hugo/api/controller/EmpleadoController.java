@@ -33,9 +33,15 @@ public class EmpleadoController {
     }
 
     @GetMapping("/{empleadoId}")
-    public ResponseEntity<EmpleadoDTOResponse> obtenerEmpleadoPorId(@PathVariable("empleadoId") Long id) {
-        EmpleadoDTOResponse empleadoId = empleadoService.obtenerEmpleadoPorId(id);
-        return new ResponseEntity<>(empleadoId, HttpStatus.OK);
+    public ResponseEntity<EmpleadoDTOResponse> obtenerEmpleadoPorId(@PathVariable Long empleadoId) {
+        EmpleadoDTOResponse idEmpleado = empleadoService.obtenerEmpleadoPorId(empleadoId);
+        return new ResponseEntity<>(idEmpleado, HttpStatus.OK);
+    }
+
+    @PutMapping("/{empleadoId}")
+    public ResponseEntity<EmpleadoDTOResponse> actualizarEmpleado(@PathVariable Long empleadoId, @RequestBody @Valid EmpleadoDTORequest empleadoDTO) {
+        EmpleadoDTOResponse empleadoActualizado = empleadoService.actualizarEmpleado(empleadoId,empleadoDTO);
+        return new ResponseEntity<>(empleadoActualizado, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
