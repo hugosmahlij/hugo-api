@@ -2,6 +2,7 @@ package com.hugo.api.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
@@ -9,23 +10,23 @@ import java.time.LocalDate;
 
 public class EmpleadoDTORequest {
 
-    @NotNull
+    @NotNull(message = "El nro de documento es obligatorio.")
     private Integer nroDocumento;
 
-    @NotBlank
+    @NotEmpty(message = "El nombre es obligatorio.")
     private String nombre;
 
-    @NotBlank
+    @NotEmpty(message = "El apellido es obligatorio.")
     private String apellido;
 
-    @NotBlank
-    @Email
+    @NotBlank(message = "El email es obligatorio.")
+    @Email(message = "El email ingresado no es correcto.")
     private String email;
 
-    @NotNull
+    @NotNull(message = "La fecha de nacimiento es obligatoria.")
     private LocalDate fechaNacimiento;
 
-    @NotNull
+    @NotNull(message = "La fecha de ingreso es obligatoria.")
     private LocalDate fechaIngreso;
 
 

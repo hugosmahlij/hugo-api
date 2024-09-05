@@ -4,6 +4,7 @@ package com.hugo.api.controller;
 import com.hugo.api.dto.EmpleadoDTORequest;
 import com.hugo.api.dto.EmpleadoDTOResponse;
 import com.hugo.api.service.EmpleadoService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +21,7 @@ public class EmpleadoController {
     EmpleadoService empleadoService;
 
     @PostMapping
-    public ResponseEntity<EmpleadoDTOResponse> agregarEmpleado(@RequestBody EmpleadoDTORequest empleadoDTO) {
+    public ResponseEntity<EmpleadoDTOResponse> agregarEmpleado(@Valid @RequestBody EmpleadoDTORequest empleadoDTO) {
         EmpleadoDTOResponse respuesta = empleadoService.agregarEmpleado(empleadoDTO);
         return new ResponseEntity<>(respuesta, HttpStatus.CREATED);
     }
