@@ -3,7 +3,7 @@ package com.hugo.api.service.impl;
 import com.hugo.api.dto.EmpleadoDTORequest;
 import com.hugo.api.dto.EmpleadoDTOResponse;
 import com.hugo.api.entity.Empleado;
-import com.hugo.api.exception.RecursoNoEncontradoException;
+import com.hugo.api.exception.IdNoEncontradoException;
 import com.hugo.api.repository.EmpleadoRepository;
 import com.hugo.api.service.EmpleadoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -104,7 +104,7 @@ public class EmpleadoServiceImpl implements EmpleadoService {
     @Override
     public EmpleadoDTOResponse obtenerEmpleadoPorId(Long id) {
         Empleado empleado = empleadoRepository.findById(id)
-                .orElseThrow(() -> new RecursoNoEncontradoException("Empleado no encontrado con id: " + id));
+                .orElseThrow(() -> new IdNoEncontradoException("No se encontró el empleado con Id: " + id));
 
         return new EmpleadoDTOResponse(
                 empleado.getId(),

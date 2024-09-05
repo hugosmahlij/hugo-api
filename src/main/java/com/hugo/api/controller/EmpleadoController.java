@@ -32,8 +32,8 @@ public class EmpleadoController {
         return new ResponseEntity<>(empleados, HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<EmpleadoDTOResponse> obtenerEmpleadoPorId(@PathVariable Long id) {
+    @GetMapping("/{empleadoId}")
+    public ResponseEntity<EmpleadoDTOResponse> obtenerEmpleadoPorId(@PathVariable("empleadoId") Long id) {
         EmpleadoDTOResponse empleadoId = empleadoService.obtenerEmpleadoPorId(id);
         return new ResponseEntity<>(empleadoId, HttpStatus.OK);
     }
