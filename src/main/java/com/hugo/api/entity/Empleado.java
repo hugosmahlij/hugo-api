@@ -33,7 +33,7 @@ public class Empleado {
     private LocalDate fechaIngreso;
 
     @Column(nullable = false, updatable = false)
-    private LocalDate fechaCreacion;
+    private LocalDateTime fechaCreacion;
 
 
 
@@ -94,16 +94,16 @@ public class Empleado {
         this.fechaIngreso = fechaIngreso;
     }
 
-    public LocalDate getFechaCreacion() {
+    public LocalDateTime getFechaCreacion() {
         return fechaCreacion;
     }
 
-    public void setFechaCreacion(LocalDate fechaCreacion) {
+    public void setFechaCreacion(LocalDateTime fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
     }
 
     @PrePersist
     protected void enCreacion() {
-        this.fechaCreacion = LocalDate.now();
+        this.fechaCreacion = LocalDateTime.now();
     }
 }

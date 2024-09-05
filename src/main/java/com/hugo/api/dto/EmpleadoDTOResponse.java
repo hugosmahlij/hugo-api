@@ -13,10 +13,10 @@ public class EmpleadoDTOResponse {
     private String email;
     private LocalDate fechaNacimiento;
     private LocalDate fechaIngreso;
-    private LocalDate fechaCreacion;
+    private LocalDateTime fechaCreacion;
 
     //Constructor que trae el ID de la base de dato por eso esta en RESPONSE
-    public EmpleadoDTOResponse(Long id, Integer nroDocumento, String nombre, String apellido, String email, LocalDate fechaNacimiento, LocalDate fechaIngreso, LocalDate fechaCreacion) {
+    public EmpleadoDTOResponse(Long id, Integer nroDocumento, String nombre, String apellido, String email, LocalDate fechaNacimiento, LocalDate fechaIngreso, LocalDateTime fechaCreacion) {
         this.id = id;
         this.nroDocumento = nroDocumento;
         this.nombre = nombre;
@@ -83,11 +83,11 @@ public class EmpleadoDTOResponse {
         this.fechaIngreso = fechaIngreso;
     }
 
-    public LocalDate getFechaCreacion() {
+    public LocalDateTime getFechaCreacion() {
         return fechaCreacion;
     }
 
-    public void setFechaCreacion(LocalDate fechaCreacion) {
+    public void setFechaCreacion(LocalDateTime fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
     }
 }
