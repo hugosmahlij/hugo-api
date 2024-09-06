@@ -1,8 +1,8 @@
 package com.hugo.api.controller;
 
 
-import com.hugo.api.dto.EmpleadoDTORequest;
-import com.hugo.api.dto.EmpleadoDTOResponse;
+import com.hugo.api.dto.request.EmpleadoDTORequest;
+import com.hugo.api.dto.response.EmpleadoDTOResponse;
 import com.hugo.api.service.EmpleadoService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

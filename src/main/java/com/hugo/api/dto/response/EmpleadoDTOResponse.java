@@ -1,4 +1,4 @@
-package com.hugo.api.dto;
+package com.hugo.api.dto.response;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

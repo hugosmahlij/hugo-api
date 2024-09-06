@@ -1,8 +1,7 @@
 package com.hugo.api.service;
 
-import com.hugo.api.dto.EmpleadoDTORequest;
-import com.hugo.api.dto.EmpleadoDTOResponse;
-import com.hugo.api.entity.Empleado;
+import com.hugo.api.dto.request.EmpleadoDTORequest;
+import com.hugo.api.dto.response.EmpleadoDTOResponse;
 
 import java.util.List;
 
