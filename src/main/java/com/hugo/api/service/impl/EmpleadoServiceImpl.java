@@ -5,6 +5,7 @@ import com.hugo.api.dto.response.EmpleadoDTOResponse;
 import com.hugo.api.entity.Empleado;
 import com.hugo.api.exception.IdNoEncontradoException;
 import com.hugo.api.repository.EmpleadoRepository;
+import com.hugo.api.repository.JornadaLaboralRepository;
 import com.hugo.api.service.EmpleadoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,6 +21,9 @@ public class EmpleadoServiceImpl implements EmpleadoService {
 
     @Autowired
     private EmpleadoRepository empleadoRepository;
+
+    @Autowired
+    private JornadaLaboralRepository jornadaLaboralRepository;
 
 
     @Override
@@ -156,7 +160,14 @@ public class EmpleadoServiceImpl implements EmpleadoService {
     }
 
     @Override
-    public void eliminarEmpleado(Long id) {
-        empleadoRepository.deleteById(id);
+    public void eliminarEmpleado(Long empleadoId) {
+        Empleado empleado = empleadoRepository.findById(empleadoId)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "No se encontró el empleado con Id: " + empleadoId));
+
+        if (jornadaLaboralRepository.existsByEmpleadoId(empleadoId)) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "No es posible eliminar un empleado con jornadas asociadas.");
+        }
+
+        empleadoRepository.delete(empleado);
     }
 }

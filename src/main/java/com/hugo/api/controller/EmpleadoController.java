@@ -44,9 +44,9 @@ public class EmpleadoController {
         return new ResponseEntity<>(empleadoActualizado, HttpStatus.OK);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> eliminarEmpleado(@PathVariable Long id) {
-        empleadoService.eliminarEmpleado(id);
+    @DeleteMapping("/{empleadoId}")
+    public ResponseEntity<Void> eliminarEmpleado(@PathVariable Long empleadoId) {
+        empleadoService.eliminarEmpleado(empleadoId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 

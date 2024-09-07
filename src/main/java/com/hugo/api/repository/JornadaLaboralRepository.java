@@ -30,4 +30,6 @@ public interface JornadaLaboralRepository extends JpaRepository<JornadaLaboral, 
 
     @Query("SELECT j FROM JornadaLaboral j WHERE j.empleado.nroDocumento = :nroDocumento AND j.fecha BETWEEN :fechaDesde AND :fechaHasta")
     List<JornadaLaboral> findByNroDocumentoAndFechaBetween(@Param("nroDocumento") Integer nroDocumento, @Param("fechaDesde") LocalDate fechaDesde, @Param("fechaHasta") LocalDate fechaHasta);
+
+    boolean existsByEmpleadoId(Long empleadoId);
 }

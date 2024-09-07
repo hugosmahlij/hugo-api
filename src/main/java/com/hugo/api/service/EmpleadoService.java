@@ -11,6 +11,6 @@ public interface EmpleadoService {
     List<EmpleadoDTOResponse> obtenerEmpleados();
     EmpleadoDTOResponse obtenerEmpleadoPorId(Long id);
     EmpleadoDTOResponse actualizarEmpleado(Long id, EmpleadoDTORequest empleadoDTO);
-    void eliminarEmpleado(Long id);
+    void eliminarEmpleado(Long empleadoId);
 
 }
