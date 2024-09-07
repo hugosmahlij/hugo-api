@@ -9,7 +9,6 @@ import com.hugo.api.repository.ConceptoLaboralRepository;
 import com.hugo.api.repository.EmpleadoRepository;
 import com.hugo.api.repository.JornadaLaboralRepository;
 import com.hugo.api.service.JornadaLaboralService;
-import org.springframework.cglib.core.Local;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -17,7 +16,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class JornadaLaboralServiceImpl implements JornadaLaboralService {
@@ -179,5 +178,34 @@ public class JornadaLaboralServiceImpl implements JornadaLaboralService {
         jornadaResponse.setHorasTrabajadas(jornadaLaboral.getHorasTrabajadas());
 
         return jornadaResponse;
+    }
+
+    @Override
+    public List<JornadaLaboralDTOResponse> obtenerJornadas(LocalDate fechaDesde, LocalDate fechaHasta, Integer nroDocumento) {
+        // Si NO se proporcionan fechas, se utilizan valores por defecto
+        LocalDate fechaInicio = (fechaDesde != null) ? fechaDesde : LocalDate.of(2000,1,1);
+        LocalDate fechaFin = (fechaHasta != null) ? fechaHasta : LocalDate.now();
+
+        List<JornadaLaboral> jornadas;
+
+        if (nroDocumento != null) {
+            jornadas = jornadaLaboralRepository.findByNroDocumentoAndFechaBetween(nroDocumento, fechaInicio, fechaFin);
+        } else {
+            jornadas = jornadaLaboralRepository.findByFechaBetween(fechaInicio, fechaFin);
+        }
+
+        return jornadas.stream().map(this::convertirAResponse).collect(Collectors.toList());
+    }
+
+    private JornadaLaboralDTOResponse convertirAResponse(JornadaLaboral jornada) {
+        JornadaLaboralDTOResponse jornadaDto = new JornadaLaboralDTOResponse();
+        jornadaDto.setId(jornada.getId());
+        jornadaDto.setNroDocumento(jornada.getEmpleado().getNroDocumento());
+        jornadaDto.setNombreCompleto(jornada.getEmpleado().getNombre() + " " + jornada.getEmpleado().getApellido());
+        jornadaDto.setFecha(jornada.getFecha());
+        jornadaDto.setConcepto(jornada.getConceptoLaboral().getNombre());
+        jornadaDto.setHorasTrabajadas(jornada.getHorasTrabajadas());
+
+        return jornadaDto;
     }
 }
